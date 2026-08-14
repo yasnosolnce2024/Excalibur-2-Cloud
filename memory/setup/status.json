@@ -1,15 +1,15 @@
 {
   "version": "1",
   "complete": false,
-  "updated_at": null,
+  "updated_at": "2026-08-14T10:45:00Z",
   "phases": {
     "cloud": "pending",
-    "site": "pending",
-    "author": "pending",
-    "voice": "pending",
-    "visual": "pending",
-    "cta": "pending",
-    "scout": "pending"
+    "site": "done",
+    "author": "done",
+    "voice": "done",
+    "visual": "done",
+    "cta": "done",
+    "scout": "done"
   },
-  "notes": "excalibur-blog-setup stamps phases to done and sets complete=true when all required phases pass."
+  "notes": "First-run Setup for Елена Горбачёва / Формула активного долголетия. Voice PASS, Visual PASS (illustrative, no photos). complete=false: нет PUBLIC_SITE_URL, FTP_*, moodboard PNG, KIE_API_KEY. Scout/Publish не запускать. Вопросы: memory/setup/questions-for-elena.md"
 }

@@ -94,5 +94,5 @@
     "YouTube"
   ],
   "cta_ok": [],
-  "comment_cta": "Filled from tenant-config.cta_links by Setup"
+  "comment_cta": "Mirrors tenant-config.cta_links. Empty: курсы не продаём, href в статье не обязателен. Дом канала VK, витрина Дзен — стратегия каналов, не обязательный CTA."
 }

@@ -1,6 +1,22 @@
 {
   "registry_version": "1.0",
-  "comment": "E-E-A-T Authors Registry. Filled by excalibur-blog-setup. SETUP_REQUIRED until author block done.",
-  "status": "SETUP_REQUIRED",
-  "authors": []
+  "comment": "E-E-A-T Authors Registry. Tenant: Елена Горбачёва / Формула активного долголетия.",
+  "status": "ok",
+  "default_author_id": "elena-gorbacheva",
+  "authors": [
+    {
+      "id": "elena-gorbacheva",
+      "name": "Елена Горбачёва",
+      "alternateName": "Солнце",
+      "jobTitle": "Автор проекта «Формула активного долголетия»",
+      "age": 61,
+      "bio_short": "Елена Горбачёва, в сети Солнце. 61 год. Автор «Формулы активного долголетия»: возраст — паспорт, не приговор.",
+      "bio_long": "Елена Горбачёва. В сети её знают как Солнце. Ей 61 год. Ведёт проект «Формула активного долголетия» — круг, где говорят о теле и вкусе к жизни без стыда за возраст и без гонки за омоложением. Дом сообщества во ВКонтакте; Дзен — витрина, которая приводит людей в этот круг. Пишет живой историей: сцена, вопрос, тепло. Курсы в текстах не продаёт и не называет.",
+      "sameAs": [
+        "https://vk.ru/formuladolgoletiya",
+        "https://dzen.ru/formuladolgoletiya",
+        "https://vk.ru/yasnosolnyshko60"
+      ]
+    }
+  ]
 }
