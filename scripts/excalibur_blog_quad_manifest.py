@@ -150,8 +150,15 @@ def build_manifest(article_dir: Path, root: Path, preserve: dict | None) -> dict
         or str(((tenant.get("cover_files") or {}).get("style_preset") or "")).strip()
     )
     style_preset = str((preserve or {}).get("style_preset") or "").strip()
-    if not style_preset and style_file:
-        style_preset = Path(style_file).stem
+    if style_file:
+        style_json_path = root / style_file
+        if style_json_path.is_file():
+            style_json = load_json(style_json_path)
+            style_preset = style_preset or str(
+                style_json.get("style_id") or style_json.get("preset_id") or ""
+            ).strip()
+        if not style_preset:
+            style_preset = Path(style_file).stem
 
     return {
         "topic_id": topic_id,

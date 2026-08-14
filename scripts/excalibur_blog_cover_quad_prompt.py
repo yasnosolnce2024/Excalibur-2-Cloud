@@ -298,6 +298,19 @@ def style_is_situational_cat_hero(style: dict) -> bool:
     return motif in {"situational_cat_hero", "cat_hero"}
 
 
+def style_is_illustrative_no_host(style: dict, hero: dict | None = None) -> bool:
+    """Kitchen/scene cover without a human host (tenant cover_mode=illustrative)."""
+    mode = str(style.get("cover_hero_mode") or "").strip().casefold()
+    if mode in {"illustrative_scene", "illustrative"}:
+        return True
+    cover_mode = str(
+        (hero or {}).get("cover_mode") or style.get("cover_mode") or ""
+    ).strip().casefold()
+    if cover_mode == "illustrative":
+        return True
+    return bool(style.get("skip_human_host") is True and not style_allows_cat_stickers(style))
+
+
 def build_prompt(
     manifest: dict,
     style: dict,
@@ -316,6 +329,7 @@ def build_prompt(
     fact_locks = topic_fact_lock_lines(manifest, article_dir)
     cat_ok = style_allows_cat_stickers(style)
     cat_hero = style_is_situational_cat_hero(style)
+    illustrative = style_is_illustrative_no_host(style, hero)
 
     highlight = compact(manifest.get("cover_hook_highlight", ""), 24)
     accent = (
@@ -334,8 +348,9 @@ def build_prompt(
     )
     cover_hook_text = compact(manifest.get("cover_hook", ""), 120)
     cover_sticky = compact(str(cover.get("sticky") or ""), 48)
+    sticky_name = "terracotta" if illustrative else "pink"
     sticky_lock = (
-        f" Small pink sticky with EXACTLY «{cover_sticky}» in Cyrillic."
+        f" Small {sticky_name} sticky with EXACTLY «{cover_sticky}» in Cyrillic."
         if cover_sticky
         else ""
     )
@@ -393,6 +408,26 @@ def build_prompt(
             "optional ONE tiny cat sticker; NO people/faces/host/Drake/EXCALIBUR badge; "
             "no cover-hook duplicate. Neg: sterile white, all-pink headline, keyword spam, "
             "watermark, logo, 9:16, unreadable text, extra faces."
+        )
+    elif illustrative:
+        ban_line = (
+            "Ban: ANY identifiable human face/host portrait/Elena likeness/white-hoodie person/"
+            "anti-age before-after/stock happy pensioner/pink-cat collage/hot-pink #FF1493 brand/"
+            "Drake/facepalm/stock watermarks/keyword spam/«Ключевые темы»/"
+            "Latin lookalike Cyrillic/pipeline stamps/EXCALIBUR badge."
+        )
+        cover_scene_tail = (
+            "NO host face; kitchen table/food/window-light scene; optional unidentifiable hands; "
+            "terracotta/sage tape; dignity; no anti-age shame."
+        )
+        reference_line = (
+            "NO reference face. cover_mode=illustrative: scene only from blog-hero prompt_fragment. "
+            "Do not invent a portrait. Style from kitchen-warmth design-code."
+        )
+        inline_suffix = (
+            "Inline all: paper-card infographic — warm ink heading, 3–6 RU labels, sage/terracotta tape; "
+            "NO people/faces/host/cats/memes/EXCALIBUR badge; no cover-hook duplicate. "
+            "Neg: sterile white, all-pink headline, anti-age shame, watermark, logo, 9:16."
         )
     else:
         ban_line = (
@@ -474,8 +509,11 @@ def main() -> int:
     design_code = load_json(design_code_path) if design_code_path.is_file() else {}
 
     cat_hero = style_is_situational_cat_hero(style)
+    illustrative = style_is_illustrative_no_host(style, hero)
     local_reference = str(style.get("local_reference") or "").strip()
     prefer_local_reference = False
+    plate_gap = False
+    batch_ref_url = ""
     if cat_hero and local_reference:
         local_path = root / local_reference
         if not local_path.is_file():
@@ -490,6 +528,28 @@ def main() -> int:
             f"{Path(local_reference).name}"
         )
         prefer_local_reference = True
+    elif illustrative:
+        if local_reference:
+            local_path = root / local_reference
+            if not local_path.is_file():
+                print(
+                    f"❌ COVER STYLE BLOCKER: local_reference missing: {local_reference}",
+                    file=sys.stderr,
+                )
+                return 1
+            batch_ref_url = (
+                f"{SITE_BASE_PLACEHOLDER}/wp-content/uploads/excalibur/"
+                f"{Path(local_reference).name}"
+            )
+            prefer_local_reference = True
+        else:
+            plate_gap = True
+            print(
+                "WARN COVER PLATE GAP: illustrative scene, no local_reference PNG "
+                "and no reference_url_hosted. Prompt may be written; --write-batch / Kie i2i "
+                "blocked until tenant moodboard. Do not invent a face or foreign CDN.",
+                file=sys.stderr,
+            )
     else:
         ref_url = (hero.get("reference_url_hosted") or "").strip()
         if not ref_url:
@@ -521,6 +581,14 @@ def main() -> int:
     print(f"OK prompt={prompt_path} chars={len(prompt)} max={MAX_MCP_PROMPT_CHARS}")
 
     if args.write_batch:
+        if plate_gap or not str(batch_ref_url or "").strip():
+            print(
+                "❌ COVER PLATE GAP: --write-batch / Kie i2i requires a tenant style plate "
+                "(local_reference PNG) or reference_url_hosted. cover_mode=illustrative — "
+                "do not invent a face or fetch a foreign CDN. Wait for moodboard.",
+                file=sys.stderr,
+            )
+            return 1
         # Cover copy is agent-owned. This script transports the completed
         # manifest to Kie; it must not evaluate wording or suggest alternatives.
         cover_slot = (manifest.get("slots") or {}).get("cover") or {}
