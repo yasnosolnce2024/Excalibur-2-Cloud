@@ -1,27 +1,59 @@
 {
-  "design_code_id": "tenant_unset",
-  "status": "SETUP_REQUIRED",
-  "label_ru": "Заполняется Setup Visual из референсов тенанта",
-  "reference_notes": "Нет дефолтного чужого бренд-коллажа. Setup Visual пишет palette, motifs, cover/inline rules.",
-  "cover_rules": [
-    "Один cover_hook разумной длины; meme_caption_ru по умолчанию пуст",
-    "Стиль и герой — только из blog-hero.json + этого design-code после Setup",
-    "Запрещён штамп пайплайна на PNG: «EXCALIBUR» / sword lockup"
-  ],
-  "inline_rules": [
-    "Только информация конкретного H2",
-    "Без людей/лиц на inline, если tenant не разрешил иное",
-    "Generated UI не выдавать за реальный screenshot"
-  ],
-  "visual_motifs": [],
+  "design_code_id": "kitchen_warmth_dignity",
+  "status": "ok",
+  "label_ru": "Тёплая кухня / жизнь / достоинство",
+  "brand_name": "Формула активного долголетия",
+  "leitmotif": "возраст — паспорт, не приговор",
+  "cover_mode": "illustrative",
+  "reference_notes": "Синтез из visual-inbox/notes.md. PNG-референсов нет. Не pink-cat, не худи, не чужое лицо. Cover i2i без plate — gap.",
   "color_palette": {
     "background": "#FFFFFF",
-    "ink": "#141821",
-    "accent_primary": "",
-    "usage": "Set by Setup Visual"
+    "ink": "#2A2118",
+    "ink_fallback": "#141821",
+    "accent_primary": "#C45C26",
+    "accent_sage": "#6B8F71",
+    "accent_wood": "#8B5E3C",
+    "forbidden_accent": "#FF1493",
+    "usage": "Чистый белый фон панелей #FFFFFF (не beige full-bleed). Основной текст — тёплый ink #2A2118, запасной контрактный #141821. Один punch-акцент терракота/мёд #C45C26 (слово, лента, кромка). Шалфей #6B8F71 — скотч, подчёркивание, лист. Дерево #8B5E3C — стол, рамка, не заливка панели. Запрещён фирменный hot-pink #FF1493 и cool violet/cyan кошачьего коллажа."
   },
-  "typography_reference": "",
-  "cover_panel_prompt_block": "",
-  "inline_information_block": "",
-  "global_negative": "sterile empty white, meme reaction cutouts, pipeline name watermark, stock banner, beige gradient spam"
+  "typography_reference": "Bold condensed Cyrillic for the single cover hook; warm ink, not all-accent headline. Inline: 3–6 short Russian labels, readable, no Latin slogan, no pseudo-Cyrillic.",
+  "visual_motifs": [
+    "утренний свет из окна",
+    "деревянный стол и лён",
+    "чай, хлеб, мёд, пар",
+    "руки с едой без лица (опционально, неидентифицируемые)",
+    "рецептная бумага, карточка практики, шалфейный скотч",
+    "рубрика «Формула вкуса»: стол, еда, свет — не портрет",
+    "достоинство возраста без anti-age стыда"
+  ],
+  "formats": {
+    "quad_canvas": "2048×1152 (2×2)",
+    "panel_aspect": "16:9",
+    "dzen_card": "16:9",
+    "vk_cover": "1:1",
+    "vk_crop_rule": "Квадратный кроп из 16:9 cover-панели; центр на стол/еду/свет; не кропать «в лицо» (лица нет); отдельный портрет для VK не генерировать"
+  },
+  "cover_rules": [
+    "Один cover_hook 18–42 символа, тёплый русский; meme_caption_ru всегда пуст",
+    "Герой обложки — сцена кухни/жизни, не человек-хозяин и не кот",
+    "Один предмет/метафора темы + воздух; фон панели #FFFFFF",
+    "Hook ink #2A2118 (или #141821); highlight максимум одно слово терракотой #C45C26 — не весь заголовок",
+    "VK 1:1 — квадратный кроп cover; Дзен и quad-панель — 16:9",
+    "Запрещён штамп пайплайна на PNG: «EXCALIBUR» / sword lockup",
+    "Не anti-age стыд, не «до/после молодости», не сток «счастливая пенсионерка»",
+    "Не белое худи ведущего, не pink-cat коллаж, не #FF1493 как фирменный акцент"
+  ],
+  "inline_rules": [
+    "Только информация конкретного H2: стол/сравнение, шаги, чеклист, карточка факта, практика",
+    "3–6 читаемых русских labels; ясный порядок чтения и исход",
+    "Без людей и лиц на inline",
+    "Тот же тёплый бумажный язык, что cover: лён/рецепт/скотч шалфей+терракота, не голый SaaS-слайд и не недоделанный каркас",
+    "Generated UI не выдавать за реальный screenshot",
+    "Пустые серые плейсхолдеры = blocker"
+  ],
+  "cover_panel_prompt_block": "Warm kitchen editorial on WHITE #FFFFFF. Ink #2A2118 Cyrillic. Terracotta #C45C26 one accent only; sage #6B8F71 tape; wood #8B5E3C table edge. Cover = table/food/window-light metaphor, optional unidentifiable hands, no host face. Dignity, not anti-age. Not pink-cat, not white hoodie, not EXCALIBUR badge.",
+  "inline_information_block": "Inline: finished paper-card infographic on #FFFFFF — comparison table, workflow, checklist, fact card or kitchen practice board. 3–6 exact RU labels. Sage/terracotta tape, recipe strip, wood edge. No people, faces, memes, cats, or cover-hook duplicate.",
+  "global_negative": "anti-age shame, before/after youth retouch, stock happy pensioner banner, identifiable face, Elena portrait, white hoodie host, pink-cat collage, hot-pink #FF1493 brand, cool violet/cyan cat stickers, beige/cream/gray/gradient full-bleed, Drake, facepalm, meme reaction, joke speech bubble, EXCALIBUR stamp or sword, keyword spam «Ключевые темы», Latin lookalike Cyrillic, empty gray placeholder boxes, sterile SaaS slide, 9:16 carousel",
+  "i2i_plate_gap": true,
+  "i2i_note": "Нет local style plate PNG. Cover i2i (Kie input_urls) не запускать, пока Елена не пришлёт moodboard. Не подставлять чужой CDN."
 }

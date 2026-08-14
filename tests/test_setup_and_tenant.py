@@ -34,7 +34,7 @@ class SetupTenantTests(unittest.TestCase):
         ):
             self.assertTrue((ROOT / rel).is_file(), rel)
 
-    def test_templates_mark_setup_required(self) -> None:
+    def test_tenant_files_filled_without_setup_required(self) -> None:
         for rel in (
             "shared/SOUL.md",
             "shared/article-style.md",
@@ -42,7 +42,27 @@ class SetupTenantTests(unittest.TestCase):
             "memory/brief/site-brief.md",
         ):
             text = (ROOT / rel).read_text(encoding="utf-8")
-            self.assertIn("SETUP_REQUIRED", text, rel)
+            self.assertNotIn("SETUP_REQUIRED", text, rel)
+        soul = (ROOT / "shared/SOUL.md").read_text(encoding="utf-8")
+        self.assertIn("Елена Горбачёва", soul)
+        self.assertIn("паспорт, не приговор", soul)
+        self.assertNotIn("Артур", soul)
+        self.assertNotIn("Хорошев", soul)
+        tenant = json.loads((ROOT / "shared/tenant-config.json").read_text(encoding="utf-8"))
+        self.assertEqual(tenant.get("brand_name"), "Формула активного долголетия")
+        self.assertEqual(tenant.get("author_id"), "elena-gorbacheva")
+        self.assertEqual(tenant.get("cover_mode"), "illustrative")
+        self.assertFalse(tenant.get("setup_complete"))
+
+    def test_authors_registry_elena(self) -> None:
+        registry = json.loads((ROOT / "shared/authors-registry.json").read_text(encoding="utf-8"))
+        self.assertEqual(registry.get("status"), "ok")
+        authors = {a["id"]: a for a in registry.get("authors") or []}
+        self.assertIn("elena-gorbacheva", authors)
+        elena = authors["elena-gorbacheva"]
+        self.assertEqual(elena["name"], "Елена Горбачёва")
+        self.assertEqual(elena["alternateName"], "Солнце")
+        self.assertIn("https://vk.ru/formuladolgoletiya", elena.get("sameAs") or [])
 
     def test_no_personal_lebedev_style_file(self) -> None:
         self.assertFalse((ROOT / "shared/lebedev-style.md").exists())

@@ -2,25 +2,59 @@
 
 <!-- Заполняет excalibur-blog-setup. Без секретов и паролей. -->
 
+Источник: first-run бриф тенанта + публичные страницы VK/Дзен (14.08.2026).  
+Не выдумывать URL сайта, FTP, ключи, фото Елены.
+
 ## Cloud
-- _(pending)_
+
+- Environment: форк yasnosolnce2024, этот прогон.
+- Memories OFF: да (явно в промпте).
+- Secrets PUBLIC_SITE_URL / FTP_* / KIE_API_KEY: нет, вопрос Елене.
+- EXCALIBUR_BLOG_ALLOW_PUBLISH: не ставить.
 
 ## Site
-- _(pending)_
+
+- brand_name: Формула активного долголетия
+- niche: активное долголетие 55+; живая история; кухня / вкус к жизни; достоинство возраста
+- language: ru
+- leitmotif: возраст — паспорт, не приговор
+- content key: living story
+- не публиковать: продажа курсов; название курса в текстах; инфоцыганский тон; кафедра; anti-age стыд; чужой слог (не тенанта)
+- каналы: дом — VK; витрина — Дзен (ведёт в VK)
+- рубрика «Формула вкуса»: путь с нуля, кухня, детская мечта готовить
+- site_url / PUBLIC_SITE_URL: неизвестен, не выдумывать
 
 ## Author
-- _(pending)_
+
+- имя: Елена Горбачёва
+- в сети: Солнце
+- возраст: 61
+- job title: автор проекта «Формула активного долголетия»
+- sameAs: https://vk.ru/formuladolgoletiya ; https://dzen.ru/formuladolgoletiya ; личная VK из описания сообщества https://vk.ru/yasnosolnyshko60
+- сайт автора / TG / MAX: не даны
 
 ## Voice
-- style notes: _(pending)_
-- sources: _(pending)_
+
+- style notes: человеческий голос; вопрос как дверь; сцена; тепло. Не инфоцыган, не кафедра.
+- sources: бриф + публичные посты VK-сообщества и канала Дзен (см. `memory/setup/voice-inbox/`). Не читать чужие article.html / live-сайт как образец слога другого автора.
+- запрет: не класть в SOUL чужой слоган, чужие статьи, чужое лицо.
 
 ## Visual
-- cover_mode: _(pending)_
-- refs: _(pending)_
+
+- cover_mode: illustrative (фото Елены нет и не будет на этом прогоне)
+- размеры: VK 1:1, Дзен 16:9
+- настроение: тёплая кухня / жизнь / достоинство
+- запреты: anti-age стыд; реальные фото Елены; чужое лицо/худи/кошачий коллаж-бренд
+- refs: файлов нет; moodboard Елена пришлёт позже (вопрос)
+- KIE ключ: позже Cloud Secret
 
 ## CTA
-- _(pending)_
+
+- курсы не продавать, курс не называть
+- ссылки в статье не обязательны (`cta_required=false`, `cta_links=[]`)
+- дом сообщества: VK; Дзен — витрина, которая ведёт людей в VK (это канальная стратегия, не обязательный href в каждой статье)
 
 ## Scout
-- signal_urls: _(pending)_
+
+- signal_urls: https://vk.ru/formuladolgoletiya ; https://dzen.ru/formuladolgoletiya
+- Wordstat: не запрошен

@@ -1,0 +1,25 @@
+{
+  "style_id": "kitchen-warmth-ru",
+  "preset_id": "kitchen-warmth-ru",
+  "status": "ok",
+  "label_ru": "Тёплая кухня, достоинство, сцена без хозяина",
+  "cover_hero_mode": "illustrative_scene",
+  "skip_human_host": true,
+  "allows_animal_stickers": false,
+  "allowed_animal_motif": "",
+  "local_reference": "",
+  "prefer_local_reference": false,
+  "design_code": "memory/cover/cover-design-code.json",
+  "cover_mode": "illustrative",
+  "accent": "#C45C26",
+  "ink": "#2A2118",
+  "background": "#FFFFFF",
+  "global_prompt_prefix": "Warm kitchen editorial, WHITE #FFFFFF panels, warm ink #2A2118 Cyrillic, terracotta #C45C26 one accent, sage #6B8F71 tape, wood #8B5E3C table. Cover: table/food/window-light, optional hands no face, dignity. No host portrait. Inline: recipe-paper cards, 3–6 RU labels. Not pink-cat, not hoodie, not stock pensioner, not #FF1493.",
+  "formats": {
+    "quad_panel": "16:9",
+    "dzen": "16:9",
+    "vk": "1:1 square crop from cover"
+  },
+  "i2i_plate_gap": true,
+  "notes": "Tenant preset for Елена Горбачёва / Формула активного долголетия. cover_hero_mode is illustrative_scene — not situational_cat / cat_hero. No plate PNG this run."
+}
