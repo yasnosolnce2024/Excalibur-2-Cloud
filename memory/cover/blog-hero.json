@@ -1,17 +1,41 @@
 {
-  "hero_id": "blog-host",
-  "status": "SETUP_REQUIRED",
-  "name_ru": "",
-  "cover_mode": "unset",
+  "hero_id": "kitchen-warmth-scene",
+  "status": "ok",
+  "name_ru": "Сцена без хозяина — тёплая кухня",
+  "cover_mode": "illustrative",
+  "skip_human_host": true,
+  "host_on_cover": false,
   "reference_image": "",
-  "reference_notes": "Filled by excalibur-blog-setup-visual. No default personal face or outfit lock.",
-  "visual_lock": {},
-  "outfit_rule": "",
-  "prompt_fragment": "",
+  "local_reference": "",
+  "reference_notes": "Фото Елены Горбачёвой нет и нельзя генерировать. Нет PNG moodboard/style plate в этом прогоне. Cover i2i без plate не запускать. Не выдумывать reference_url на чужой CDN.",
+  "visual_lock": {
+    "subject": "illustrative kitchen scene, no human host",
+    "face": "none — do not invent Elena Gorbacheva or any identifiable portrait",
+    "hands": "optional unidentifiable hands with food only; never a head/shoulders crop",
+    "setting": "warm kitchen, wooden table, window light, linen, tea, bread, honey, sage",
+    "mood": "life and dignity; age is a passport, not a sentence",
+    "rubric_formula_vkusa": "table, food, hands without a face, light from the window",
+    "forbid": [
+      "anti-age shame",
+      "before/after youth",
+      "stock happy pensioner banner",
+      "white hoodie host",
+      "pink-cat collage",
+      "hot-pink #FF1493 brand accent",
+      "EXCALIBUR stamp"
+    ]
+  },
+  "outfit_rule": "No host outfit. Do not invent a person in a white hoodie. No portrait lock.",
+  "prompt_fragment": "Warm kitchen table, window light, linen, tea, bread; no face, no host; dignity; #FFF",
   "cover_hook_rules": [
     "cover_hook invents Cover agent from reader_pain; no script templates",
-    "meme_caption_ru always empty unless tenant explicitly allows"
+    "meme_caption_ru always empty unless tenant explicitly allows",
+    "hook: warm short Russian, 18–42 characters; one subject; no SEO tail",
+    "do not print cover_keys_ru as a keyword checklist on the PNG"
   ],
+  "meme_caption_ru": "",
+  "i2i_plate_gap": true,
+  "i2i_note": "Gap: no local style plate PNG. Kie i2i needs input_urls/plate. Do not fetch a foreign CDN. Wait for Elena’s 2–6 kitchen moodboard files, then re-run Setup Visual.",
   "reference_url_hosted": "",
   "reference_url_source": "",
   "reference_url_updated_at": null

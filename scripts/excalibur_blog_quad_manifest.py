@@ -143,13 +143,23 @@ def build_manifest(article_dir: Path, root: Path, preserve: dict | None) -> dict
         or str((preserve or {}).get("cover_hook_highlight") or "").strip()
     )
 
+    tenant_path = root / "shared/tenant-config.json"
+    tenant = load_json(tenant_path) if tenant_path.is_file() else {}
+    style_file = (
+        str((preserve or {}).get("style_file") or "").strip()
+        or str(((tenant.get("cover_files") or {}).get("style_preset") or "")).strip()
+    )
+    style_preset = str((preserve or {}).get("style_preset") or "").strip()
+    if not style_preset and style_file:
+        style_preset = Path(style_file).stem
+
     return {
         "topic_id": topic_id,
         "canvas_file": "cover/canvas-quad.png",
         "layout": "2x2",
         "pipeline": "quad_canvas_1x_image_api",
-        "style_preset": "tenant_unset",
-        "style_file": "memory/cover/quad-style-pink-cat-digital-collage-ru.json",
+        "style_preset": style_preset or "kitchen-warmth-ru",
+        "style_file": style_file or "memory/cover/quad-style-kitchen-warmth-ru.json",
         "blog_hero": "memory/cover/blog-hero.json",
         "inline_types_catalog": "memory/cover/inline-visual-types.json",
         "cover_hook": hook,
@@ -158,7 +168,7 @@ def build_manifest(article_dir: Path, root: Path, preserve: dict | None) -> dict
         "mcp_note": (
             "PRIMARY: ONE Kie API job via excalibur_blog_kie_gpt_image2_api.py "
             "(KIE_API_KEY). Cover agent must invent cover_hook + all scene_hint/alt "
-            "before --write-batch. White hoodie lock = blog-hero.json only."
+            "before --write-batch. Hero lock = blog-hero.json (illustrative: no host)."
         ),
         "slots": slots,
         "cover_keys_ru": list((preserve or {}).get("cover_keys_ru") or []),

@@ -1,16 +1,25 @@
 {
   "version": "1.0",
   "setup_complete": false,
-  "brand_name": "",
+  "brand_name": "Формула активного долголетия",
   "language": "ru",
-  "niche": "",
-  "content_goals": [],
-  "author_id": "",
+  "niche": "активное долголетие 55+; живая история; кухня и достоинство возраста",
+  "content_goals": [
+    "живая история, а не лекция",
+    "достоинство возраста: паспорт, не приговор",
+    "рубрика «Формула вкуса»: кухня, путь с нуля, детская мечта готовить",
+    "дом во ВКонтакте; Дзен — витрина к VK",
+    "не продавать курсы и не называть курс в текстах"
+  ],
+  "author_id": "elena-gorbacheva",
   "cta_required": false,
   "cta_links": [],
-  "cover_mode": "unset",
+  "cover_mode": "illustrative",
   "dzen_rf_pack": true,
-  "scout_signal_urls": [],
+  "scout_signal_urls": [
+    "https://vk.ru/formuladolgoletiya",
+    "https://dzen.ru/formuladolgoletiya"
+  ],
   "interlink_old_articles": false,
   "style_files": {
     "soul": "shared/SOUL.md",
@@ -20,7 +29,7 @@
   "cover_files": {
     "hero": "memory/cover/blog-hero.json",
     "design_code": "memory/cover/cover-design-code.json",
-    "style_preset": ""
+    "style_preset": "memory/cover/quad-style-kitchen-warmth-ru.json"
   },
-  "comment": "Filled by excalibur-blog-setup. Pipeline agents read this file. Do not put secrets here."
+  "comment": "Filled by excalibur-blog-setup. Visual: cover_mode=illustrative, preset kitchen-warmth-ru. Do not put secrets here. setup_complete stays false until PUBLIC_SITE_URL/FTP answers."
 }

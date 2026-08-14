@@ -318,11 +318,16 @@ def build_prompt(
     cat_hero = style_is_situational_cat_hero(style)
 
     highlight = compact(manifest.get("cover_hook_highlight", ""), 24)
+    accent = (
+        str(style.get("accent") or "").strip()
+        or str((design_code.get("color_palette") or {}).get("accent_primary") or "").strip()
+        or "#C45C26"
+    )
     highlight_rule = (
-        f'paint ONLY the highlight word "{highlight}" in hot-pink #FF1493; '
+        f'paint ONLY the highlight word "{highlight}" in accent {accent}; '
         f'hook text must match exactly — do not substitute «время»/traffic markers'
         if highlight
-        else "paint at most ONE punch word in hot-pink #FF1493"
+        else f"paint at most ONE punch word in accent {accent}"
     )
     cover_scene = sanitize_cover_scene_hint(
         str(cover.get("scene_hint") or ""), highlight
@@ -343,10 +348,9 @@ def build_prompt(
     )
     if not style_prefix:
         style_prefix = (
-            "Dense collage RU editorial, WHITE #FFFFFF, BLACK #141821 Cyrillic ink, "
-            "hot-pink #FF1493 one accent only. Every panel: torn paper, tape, "
-            "≥2 topic stickers, sticky, ≥1 educational UI card (labels from scene_hint). "
-            "Busy collage, not sterile."
+            "Warm kitchen editorial, WHITE #FFFFFF, ink #2A2118 Cyrillic, "
+            "terracotta #C45C26 one accent only. Cover: table/food/window-light, "
+            "no host face. Inline: paper cards, tape, 3–6 RU labels. Not sterile."
         )
     if cat_hero:
         ban_line = (
@@ -461,7 +465,7 @@ def main() -> int:
         root
         / manifest.get(
             "style_file",
-            "memory/cover/quad-style-pink-cat-digital-collage-ru.json",
+            "memory/cover/quad-style-kitchen-warmth-ru.json",
         )
     )
     types_path = root / manifest.get("inline_types_catalog", "memory/cover/inline-visual-types.json")
